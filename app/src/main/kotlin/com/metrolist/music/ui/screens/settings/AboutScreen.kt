@@ -158,7 +158,7 @@ private fun handleEasterEggClick(
 
 @Composable
 private fun ContributorAvatar(
-    avatarUrl: String,
+    avatarUrl: Any,
     sizeDp: Int,
     modifier: Modifier = Modifier,
     shape: Shape = CircleShape,
