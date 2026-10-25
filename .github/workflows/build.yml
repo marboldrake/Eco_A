@@ -63,7 +63,7 @@ jobs:
         run: ./gradlew --console=plain assemble${{ matrix.variantName }}Release --warning-mode summary
         env:
           METROLIST_APPLICATION_ID: com.metrolist.music
-          METROLIST_APP_NAME: Metrolist Nightly
+          METROLIST_APP_NAME: Ecoa Nightly
           METROLIST_BUILD_COMMIT: ${{ github.sha }}
           PULL_REQUEST: "false"
           GITHUB_EVENT_NAME: ${{ github.event_name }}
@@ -142,7 +142,7 @@ jobs:
         run: ./gradlew --console=plain assemble${{ matrix.variantName }}Debug --warning-mode summary
         env:
           METROLIST_APPLICATION_ID: com.metrolist.music
-          METROLIST_APP_NAME: Metrolist Nightly
+          METROLIST_APP_NAME: Ecoa Nightly
           METROLIST_BUILD_COMMIT: ${{ github.sha }}
           PULL_REQUEST: "false"
           GITHUB_EVENT_NAME: ${{ github.event_name }}
@@ -196,7 +196,7 @@ jobs:
           gh release create nightly \
             nightly/Metrolist-with-Google-Cast.apk \
             --target "$GITHUB_SHA" \
-            --title "Metrolist Nightly" \
+            --title "Ecoa Nightly" \
             --notes-file nightly-notes.md \
             --generate-notes \
             --prerelease \
