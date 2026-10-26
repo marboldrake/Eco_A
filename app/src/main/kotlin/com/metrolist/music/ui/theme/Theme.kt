@@ -25,7 +25,23 @@ import com.materialkolor.dynamiccolor.ColorSpec
 import com.materialkolor.rememberDynamicColorScheme
 import com.materialkolor.score.Score
 
-val DefaultThemeColor = Color(0xFFED5564)
+val DefaultThemeColor = Color(0xFFFFFFFF)
+
+// Nocturne Audio base palette (monochromatic, AMOLED)
+val NocturneCanvas = Color(0xFF000000)
+val NocturneSurfaceLowest = Color(0xFF050505)
+val NocturneSurface = Color(0xFF0A0A0A)
+val NocturneSurfaceElevated = Color(0xFF121214)
+val NocturneSurfaceContainer = Color(0xFF201F1F)
+val NocturneSurfaceContainerHigh = Color(0xFF2A2A2A)
+val NocturneSurfaceContainerHighest = Color(0xFF353534)
+val NocturneOnSurface = Color(0xFFE5E2E1)
+val NocturneOnSurfaceVariant = Color(0xFFC4C7C8)
+val NocturneSecondary = Color(0xFFA1A1AA)
+val NocturneMuted = Color(0xFF71717A)
+val NocturneGlassFill = Color(0xBF0A0A0C)
+val NocturneBorderSubtle = Color(0x12FFFFFF)
+val NocturneHairline = Color(0x1FFFFFFF)
 
 @Composable
 fun MetrolistTheme(
