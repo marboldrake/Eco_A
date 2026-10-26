@@ -10,6 +10,7 @@ import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.ColorScheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.runtime.Composable
@@ -51,21 +52,59 @@ fun MetrolistTheme(
     content: @Composable () -> Unit,
 ) {
     val context = LocalContext.current
-    // Determine if system dynamic colors should be used (Android S+ and default theme color)
-    val useSystemDynamicColor = (themeColor == DefaultThemeColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
-
-    // Select the appropriate color scheme generation method
-    val baseColorScheme = if (useSystemDynamicColor) {
-        // Use standard Material 3 dynamic color functions for system wallpaper colors
-        if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
-    } else {
-        // Use materialKolor only when a specific seed color is provided
-        rememberDynamicColorScheme(
-            seedColor = themeColor, // themeColor is guaranteed non-default here
-            isDark = darkTheme,
-            specVersion = ColorSpec.SpecVersion.SPEC_2025,
-            style = PaletteStyle.TonalSpot // Keep existing style
+    // Nocturne Audio: fixed monochromatic AMOLED scheme in dark mode.
+    // Light mode keeps the previous dynamic/materialKolor behavior.
+    val baseColorScheme = if (darkTheme) {
+        darkColorScheme(
+            primary = NocturneOnSurface,
+            onPrimary = NocturneCanvas,
+            primaryContainer = NocturneSurfaceElevated,
+            onPrimaryContainer = NocturneOnSurface,
+            inversePrimary = NocturneSecondary,
+            secondary = NocturneSecondary,
+            onSecondary = NocturneCanvas,
+            secondaryContainer = NocturneSurfaceContainer,
+            onSecondaryContainer = NocturneOnSurfaceVariant,
+            tertiary = NocturneOnSurface,
+            onTertiary = NocturneCanvas,
+            tertiaryContainer = NocturneSurfaceElevated,
+            onTertiaryContainer = NocturneOnSurfaceVariant,
+            background = NocturneCanvas,
+            onBackground = NocturneOnSurface,
+            surface = NocturneSurface,
+            onSurface = NocturneOnSurface,
+            surfaceVariant = NocturneSurfaceElevated,
+            onSurfaceVariant = NocturneOnSurfaceVariant,
+            surfaceTint = NocturneOnSurface,
+            inverseSurface = NocturneOnSurface,
+            inverseOnSurface = NocturneCanvas,
+            error = Color(0xFFFFB4AB),
+            onError = Color(0xFF690005),
+            errorContainer = Color(0xFF93000A),
+            onErrorContainer = Color(0xFFFFDAD6),
+            outline = NocturneMuted,
+            outlineVariant = NocturneBorderSubtle,
+            scrim = Color.Black,
+            surfaceBright = NocturneSurfaceContainerHighest,
+            surfaceDim = NocturneCanvas,
+            surfaceContainerLowest = NocturneSurfaceLowest,
+            surfaceContainerLow = NocturneSurface,
+            surfaceContainer = NocturneSurfaceContainer,
+            surfaceContainerHigh = NocturneSurfaceContainerHigh,
+            surfaceContainerHighest = NocturneSurfaceContainerHighest,
         )
+    } else {
+        val useSystemDynamicColor = (themeColor == DefaultThemeColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S)
+        if (useSystemDynamicColor) {
+            dynamicLightColorScheme(context)
+        } else {
+            rememberDynamicColorScheme(
+                seedColor = themeColor,
+                isDark = false,
+                specVersion = ColorSpec.SpecVersion.SPEC_2025,
+                style = PaletteStyle.TonalSpot
+            )
+        }
     }
 
     // Apply pureBlack modification if needed, similar to original logic
